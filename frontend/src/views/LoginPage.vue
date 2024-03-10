@@ -53,12 +53,14 @@ import { ref } from "vue";
 import {useRouter} from "vue-router";
 import axios from "axios";
 import {useAuthStore} from "../stores/auth.js"
+import { useTodolistStore } from "../stores/todolist.js";
 
 const username = ref('');
 const password = ref('');
 const message = ref('');
 const router = useRouter();
 const authStore = useAuthStore();
+const todolistStore = useTodolistStore();
 
 async function login() {
   try {
@@ -66,9 +68,12 @@ async function login() {
       username: username.value,
       password: password.value,
     });
-    localStorage.setItem('token', response.data.data.token);
+    localStorage.setItem('token', response.data.data.userData.token);
     authStore.isAuth = true;
-    router.push(`/users/${response.data.data.username}`);
+    router.push(`/users/${response.data.data.userData.username}`);
+    for (let i = 0; i < response.data.data.todolist.length; i++) {
+      todolistStore.todolist.push(response.data.data.todolist[i])
+    }
     console.info(response);
   } catch (error) {
     console.info(error);

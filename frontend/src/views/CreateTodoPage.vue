@@ -33,11 +33,13 @@ import { useRoute, useRouter } from "vue-router";
 import Input from "../components/Input.vue";
 import { ref } from "vue";
 import axios from "axios";
+import { useTodolistStore } from "../stores/todolist.js";
 
 const todolist = ref('');
 const router = useRouter();
 const route = useRoute();
 const username = route.params.username;
+const todolistStore = useTodolistStore();
 
 async function addTodo() {
   console.info(typeof todolist.value)
@@ -53,10 +55,12 @@ async function addTodo() {
         },
       },
     );
-    console.info(response);
+    console.info(typeof todolistStore.todolist)
+    console.info(response); 
+    todolistStore.todolist.push(response.data.data);
     router.push(`/users/${username}`)
   } catch (error) {
-    console.info(error);
+    // console.info(error);
   }
 }
 </script>

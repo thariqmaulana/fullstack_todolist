@@ -55,7 +55,7 @@ const login = async (request) => {
   }
 
   const token = uuid().toString();
-  return await prisma.user.update({
+  const userData =  await prisma.user.update({
     data: {
       token: token
     },
@@ -67,6 +67,20 @@ const login = async (request) => {
       username: true
     }
   });
+
+  const todolist = await prisma.todolist.findMany({
+    where: {
+      username:  user.username
+    },
+    select: {
+      todolist: true
+    }
+  });
+
+  return {
+    userData,
+    todolist
+  }
 };
 
 const get = async (username) => {

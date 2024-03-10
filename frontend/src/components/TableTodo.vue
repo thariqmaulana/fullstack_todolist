@@ -20,11 +20,7 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr>
-          <th>1</th>
-          <td>1</td>
-          <td>1</td>
-        </tr>
+        <slot></slot>
       </tbody>
     </table>
   </div>

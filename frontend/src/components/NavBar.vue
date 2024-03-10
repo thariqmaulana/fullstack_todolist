@@ -33,9 +33,11 @@
 import { useAuthStore } from '../stores/auth.js';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { useTodolistStore } from '../stores/todolist.js';
 
 const authStore = useAuthStore();
 const router = useRouter();
+const todolistStore = useTodolistStore();
 
 async function logout() {
   try {
@@ -44,13 +46,14 @@ async function logout() {
         Authorization: localStorage.getItem('token')
       }
     });
+    todolistStore.$reset();
     authStore.isAuth = false;
     router.push('/');
     localStorage.clear()
     console.info(localStorage.getItem('token'))
     console.info(response);
   } catch (error) {
-    message.value = error.response.data.errors;
+    console.info(error)
   }
 }
 </script>

@@ -13,9 +13,10 @@ const create = async (user, todolist) => {
   return await prisma.todolist.create({
     data: todolist,
     select: {
-      todolist: true
+      todolist: true,
     }
   });
+
 }
 
 export default {
