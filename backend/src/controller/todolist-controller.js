@@ -13,6 +13,19 @@ const create = async (req, res, next) => {
   }
 }
 
+const remove = async (req, res, next) => {
+  try {
+    console.info(req.body.id + "tes")
+    await todolistService.remove(req.user, req.body.data)
+    res.status(200).json({
+      data: "OK"
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
   create,
+  remove,
 }

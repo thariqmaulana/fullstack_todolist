@@ -8,6 +8,9 @@ userRouter.use(authMiddleware);
 
 // User API
 userRouter.delete('/users/logout', userController.logout);
+
+// Todolist API
 userRouter.post('/users/:username/create', todolistController.create);
+userRouter.delete('/users/:username', todolistController.remove);
 
 export {userRouter}

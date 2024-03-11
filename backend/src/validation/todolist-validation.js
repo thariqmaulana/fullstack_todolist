@@ -1,4 +1,13 @@
 import Joi from "joi";
 
-export const createTodolist = Joi.string().min(3).max(100).required();
+const createTodolistValidation = Joi.string().min(3).max(100).required();
+
+const getTodolistValidation = Joi.number().positive().required();
+
+export {
+  createTodolistValidation, 
+  getTodolistValidation,
+}
+
+
 

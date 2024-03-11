@@ -3,6 +3,8 @@
     <NavBar></NavBar>
     <br /><br /><br />
 
+    <div class="text-center fw-bold ">{{ AuthStore.message }}</div>
+
     <router-view></router-view>
   </div>
 </template>

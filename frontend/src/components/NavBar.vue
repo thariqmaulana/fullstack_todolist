@@ -46,14 +46,15 @@ async function logout() {
         Authorization: localStorage.getItem('token')
       }
     });
-    todolistStore.$reset();
+    todolistStore.$reset;
     authStore.isAuth = false;
     router.push('/');
     localStorage.clear()
     console.info(localStorage.getItem('token'))
     console.info(response);
   } catch (error) {
-    console.info(error)
+    authStore.message = error.response.data.errors;
+    console.info(error);
   }
 }
 </script>

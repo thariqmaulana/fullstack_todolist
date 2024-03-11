@@ -74,6 +74,7 @@ async function login() {
     for (let i = 0; i < response.data.data.todolist.length; i++) {
       todolistStore.todolist.push(response.data.data.todolist[i])
     }
+    console.info(localStorage.getItem('token'));
     console.info(response);
   } catch (error) {
     console.info(error);

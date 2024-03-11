@@ -73,7 +73,8 @@ const login = async (request) => {
       username:  user.username
     },
     select: {
-      todolist: true
+      todolist: true,
+      id: true
     }
   });
 
